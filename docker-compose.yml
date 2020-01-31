@@ -28,6 +28,6 @@ services:
 volumes:
   database:
 
-networks:
+networks: 
   bq-network:
     driver: bridge
