@@ -23,7 +23,7 @@ class ProductService {
           where: { id: Number(id) }
         })
   
-        if (productsToUpdate) {
+        if (productToUpdate) {
           await models.products.update(updateProduct, { where: { id: Number(id) } })
   
           return updateProduct
