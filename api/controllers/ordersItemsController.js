@@ -1,4 +1,4 @@
-import OrdersItemsService from '../server/ordersItemsService'
+import ordersItemsService from '../server/ordersItemsService'
 import Util from '../utils/Utils'
 
 const util = new Util()
@@ -6,9 +6,9 @@ const util = new Util()
 class OrdersItemsController {
   static async getAllOrdersItems(req, res) {
     try {
-      const getAllOrdersItems = await OrdersItemsService.getAllOrdersItems()
-      if (getAllOrdersItems.length > 0) {
-        util.setSuccess(200, 'OrdersItems retrieved', getAllOrdersItems)
+      const allOrdersItems = await ordersItemsService.getAllOrdersItems()
+      if (allOrdersItems.length > 0) {
+        util.setSuccess(200, 'OrdersItems retrieved', allOrdersItems)
       } else {
         util.setSuccess(200, 'No OrdersItems found')
       }
@@ -26,7 +26,7 @@ class OrdersItemsController {
     }
     const newOrdersItems = req.body
     try {
-      const createdOrdersItems = await OrdersItemsService.addOrdersItems(newOrdersItems)
+      const createdOrdersItems = await ordersItemsService.addOrdersItems(newOrdersItems)
       util.setSuccess(201, 'OrdersItems Added!', createdOrdersItems)
       return util.send(res)
     } catch (error) {
@@ -43,7 +43,7 @@ class OrdersItemsController {
       return util.send(res)
     }
     try {
-      const updateOrdersItems = await OrdersItemsService.updateOrdersItems(id, alteredOrdersItems)
+      const updateOrdersItems = await ordersItemsService.updateOrdersItems(id, alteredOrdersItems)
       if (!updateOrdersItems) {
         util.setError(404, `Cannot find OrdersItems with the id: ${id}`)
       } else {
@@ -65,7 +65,7 @@ class OrdersItemsController {
     }
 
     try {
-      const theOrdersItems = await OrdersItemsService.getOrdersItems(id)
+      const theOrdersItems = await ordersItemsService.getOrdersItems(id)
 
       if (!theOrdersItems) {
         util.setError(404, `Cannot find OrdersItems with the id ${id}`)
@@ -88,7 +88,7 @@ class OrdersItemsController {
     }
 
     try {
-      const ordersItemsToDelete = await OrdersItemsService.deleteOrdersItems(id)
+      const ordersItemsToDelete = await ordersItemsService.deleteOrdersItems(id)
 
       if (ordersItemsToDelete) {
         util.setSuccess(200, 'OrdersItems deleted')
